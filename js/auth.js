@@ -144,5 +144,5 @@ function registerCandidate(data) {
 
 function logout() {
     clearSession();
-    window.location.href = 'home.html';
+    window.location.href = '../home.html';
 }

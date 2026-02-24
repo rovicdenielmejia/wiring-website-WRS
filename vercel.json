@@ -7,6 +7,8 @@
   ],
   "redirects": [
     { "source": "/why-us", "destination": "/why-us.html", "permanent": true },
+    { "source": "/solutions", "destination": "/solutions.html", "permanent": true },
+    { "source": "/employer-solutions", "destination": "/employer-solutions.html", "permanent": true },
     { "source": "/services", "destination": "/services.html", "permanent": true },
     { "source": "/hr-services", "destination": "/hr-services.html", "permanent": true },
     { "source": "/recruitment-process", "destination": "/recruitment-process.html", "permanent": true },

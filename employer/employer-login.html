@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Job Seeker Login - Workforce Recruitment Solutions. Access your profile, job matches, and application tracking.">
-    <title>Job Seeker Login | Workforce Recruitment Solutions</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles-portal.css">
+    <meta name="description" content="Employer Login - Workforce Recruitment Solutions. Access your hiring dashboard, job management, and candidate pipeline.">
+    <title>Employer Login | Workforce Recruitment Solutions</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles-portal.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -14,15 +14,15 @@
         <nav class="navbar" aria-label="Main navigation">
             <div class="container">
                 <div class="nav-brand">
-                    <h1><a href="home.html" class="nav-brand-link">
-                        <img src="Assets/WRS LOGO.png" alt="Workforce Recruitment Solutions" class="nav-logo">
+                    <h1><a href="../home.html" class="nav-brand-link">
+                        <img src="../Assets/WRS LOGO.png" alt="Workforce Recruitment Solutions" class="nav-logo">
                         <span class="nav-brand-title">Workforce Recruitment Solutions</span>
                     </a></h1>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="candidate-register.html">Register</a></li>
-                    <li><a href="employer-login.html">Employers</a></li>
+                    <li><a href="../home.html">Home</a></li>
+                    <li><a href="employer-register.html">Register</a></li>
+                    <li><a href="../candidate/candidate-login.html">Job Seekers</a></li>
                 </ul>
                 <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                     <span></span><span></span><span></span>
@@ -33,13 +33,13 @@
 
     <main id="main-content" class="auth-page">
         <div class="auth-card">
-            <h1>Job Seeker Login</h1>
-            <p class="auth-subtitle">Access your profile, job matches, and application tracking.</p>
+            <h1>Employer Login</h1>
+            <p class="auth-subtitle">Access your hiring dashboard, job management, and candidate pipeline.</p>
             <div class="auth-tabs">
-                <a href="candidate-login.html" class="active">Login</a>
-                <a href="candidate-register.html">Register</a>
+                <a href="employer-login.html" class="active">Login</a>
+                <a href="employer-register.html">Register</a>
             </div>
-            <form id="candidate-login-form">
+            <form id="employer-login-form">
                 <div class="form-group">
                     <label for="email">Email *</label>
                     <input type="email" id="email" name="email" required autocomplete="email">
@@ -52,22 +52,22 @@
                 <button type="submit" class="cta-button">Login</button>
             </form>
             <p class="auth-footer">
-                New job seeker? <a href="candidate-register.html">Register here</a>.<br>
-                <a href="home.html">Back to home</a>
+                New employer? <a href="employer-register.html">Register here</a>.<br>
+                <a href="../home.html">Back to home</a>
             </p>
         </div>
     </main>
 
-    <script src="js/auth.js"></script>
+    <script src="../js/auth.js"></script>
     <script>
-        document.getElementById('candidate-login-form').addEventListener('submit', function(e) {
+        document.getElementById('employer-login-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
-            const result = login(email, password, 'candidate');
+            const result = login(email, password, 'employer');
             const errEl = document.getElementById('login-error');
             if (result.success) {
-                window.location.href = 'candidate-dashboard.html';
+                window.location.href = 'employer-dashboard.html';
             } else {
                 errEl.textContent = result.error || 'Login failed.';
                 errEl.style.display = 'block';

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Employer Dashboard - Hiring dashboard, job management, candidate pipeline. Workforce Recruitment Solutions.">
     <title>Employer Dashboard | Workforce Recruitment Solutions</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles-portal.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles-portal.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,13 +15,13 @@
             <div class="container">
                 <div class="nav-brand">
                     <h1><a href="employer-dashboard.html" class="nav-brand-link">
-                        <img src="Assets/WRS LOGO.png" alt="Workforce Recruitment Solutions" class="nav-logo">
+                        <img src="../Assets/WRS LOGO.png" alt="Workforce Recruitment Solutions" class="nav-logo">
                         <span class="nav-brand-title">WRS Employer Portal</span>
                     </a></h1>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="book-consultation.html">Request Dedicated Recruiter</a></li>
+                    <li><a href="../home.html">Home</a></li>
+                    <li><a href="../book-consultation.html">Request Dedicated Recruiter</a></li>
                     <li><a href="#" id="employer-logout">Logout</a></li>
                 </ul>
                 <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -47,8 +47,8 @@
             <div class="dashboard-header">
                 <h1>Employer Dashboard</h1>
                 <div>
-                    <a href="jobs.html" class="cta-button">Post a Job</a>
-                    <a href="book-consultation.html" class="cta-button cta-button--outline">Request Dedicated Recruiter</a>
+                    <a href="../jobs.html" class="cta-button">Post a Job</a>
+                    <a href="../book-consultation.html" class="cta-button cta-button--outline">Request Dedicated Recruiter</a>
                 </div>
             </div>
 
@@ -70,7 +70,7 @@
                 </div>
                 <div class="dashboard-card">
                     <h3>Active Job Posts</h3>
-                    <div id="employer-jobs-list">No active jobs. <a href="jobs.html">Post your first job</a>.</div>
+                    <div id="employer-jobs-list">No active jobs. <a href="../jobs.html">Post your first job</a>.</div>
                 </div>
                 <div class="dashboard-card">
                     <h3>Candidate Pipeline</h3>
@@ -83,7 +83,7 @@
                 <h2>Job Management</h2>
                 <div class="dashboard-card">
                     <p>Create and edit job postings, set hiring priorities, define requirements, and upload job descriptions.</p>
-                    <a href="jobs.html" class="cta-button">Manage Jobs</a>
+                    <a href="../jobs.html" class="cta-button">Manage Jobs</a>
                 </div>
             </section>
 
@@ -99,7 +99,7 @@
                 <h2>Interview Management</h2>
                 <div class="dashboard-card">
                     <p>Schedule interviews, video interview integration, calendar sync.</p>
-                    <a href="book-consultation.html" class="cta-button cta-button--outline">Request Interview Support</a>
+                    <a href="../book-consultation.html" class="cta-button cta-button--outline">Request Interview Support</a>
                 </div>
             </section>
 
@@ -108,7 +108,7 @@
                 <div class="dashboard-card">
                     <p>Time-to-hire, cost-per-hire, pipeline status, placement success rate.</p>
                     <p><em>Available with dedicated recruiter engagement.</em></p>
-                    <a href="book-consultation.html" class="cta-button">Request Dedicated Recruiter</a>
+                    <a href="../book-consultation.html" class="cta-button">Request Dedicated Recruiter</a>
                 </div>
             </section>
 
@@ -130,8 +130,8 @@
         </div>
     </main>
 
-    <script src="js/auth.js"></script>
-    <script src="script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/script.js"></script>
     <script>
         const session = requireRole(['employer'], 'employer-login.html');
         if (session) {
@@ -144,7 +144,7 @@
             document.getElementById('stat-candidates').textContent = '0';
             document.getElementById('stat-interviews').textContent = '0';
             if (jobs.length > 0) {
-                document.getElementById('employer-jobs-list').innerHTML = '<ul>' + jobs.map(j => '<li><a href="jobs.html">' + escapeHtml(j.title) + ' – ' + escapeHtml(j.location) + '</a></li>').join('') + '</ul>';
+                document.getElementById('employer-jobs-list').innerHTML = '<ul>' + jobs.map(j => '<li><a href="../jobs.html">'  + escapeHtml(j.title) + ' – ' + escapeHtml(j.location) + '</a></li>').join('') + '</ul>';
             }
         }
         function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }

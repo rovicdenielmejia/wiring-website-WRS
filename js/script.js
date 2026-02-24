@@ -448,11 +448,33 @@ function setupMobileNav() {
         });
     }
     
+    // Mega menu: on mobile, click toggles open instead of navigating
+    document.querySelectorAll('.mega-wrapper > .nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth < 900) {
+                e.preventDefault();
+                this.parentElement.classList.toggle('open');
+            }
+        });
+    });
+
+    // Services dropdown: on mobile, click toggles open (folder behavior)
+    document.querySelectorAll('.nav-item-has-dropdown > a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth < 900) {
+                e.preventDefault();
+                this.parentElement.classList.toggle('open');
+            }
+        });
+    });
+    
     // Close menu when clicking on a link
     const navLinks = document.querySelectorAll('.nav-menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
+            document.querySelectorAll('.mega-wrapper').forEach(w => w.classList.remove('open'));
+            document.querySelectorAll('.nav-item-has-dropdown').forEach(w => w.classList.remove('open'));
             if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
         });
     });
