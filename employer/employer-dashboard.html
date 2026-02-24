@@ -48,7 +48,7 @@
                 <h1>Employer Dashboard</h1>
                 <p id="employer-welcome" class="dashboard-welcome">Welcome, <strong id="employer-name">User</strong>.</p>
                 <div>
-                    <a href="../jobs.html" class="cta-button">Post a Job</a>
+                    <a href="job-management.html" class="cta-button">Post a Job</a>
                     <a href="../book-consultation.html" class="cta-button cta-button--outline">Request Dedicated Recruiter</a>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                         <span class="dashboard-empty-state-badge">New Dashboard</span>
                         <h2 class="dashboard-empty-state-title">No jobs yet</h2>
                         <p class="dashboard-empty-state-text">You haven’t posted any jobs. Post your first role to start building your candidate pipeline and track applicants from here.</p>
-                        <a href="../jobs.html" class="cta-button cta-button--employer">Post your first job</a>
+                        <a href="job-management.html" class="cta-button cta-button--employer">Post your first job</a>
                         <p class="dashboard-empty-state-secondary"><a href="../book-consultation.html">Request a dedicated recruiter</a> to handle hiring for you.</p>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                 <h2>Job Management</h2>
                 <div class="dashboard-card">
                     <p>Create and edit job postings, set hiring priorities, define requirements, and upload job descriptions.</p>
-                    <a href="../jobs.html" class="cta-button">Manage Jobs</a>
+                    <a href="job-management.html" class="cta-button">Manage Jobs</a>
                 </div>
             </section>
 
@@ -145,9 +145,11 @@
     </main>
 
     <script src="../js/auth.js"></script>
+    <script src="../js/jobs.js"></script>
     <script src="../js/script.js"></script>
     <script>
-        const session = requireRole(['employer'], 'employer-login.html');
+        function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+        var session = requireRole(['employer'], 'employer-login.html');
         if (session) {
             var welcomeEl = document.getElementById('employer-name');
             if (welcomeEl) welcomeEl.textContent = session.name || session.companyName || session.contactName || 'Employer';
@@ -155,24 +157,25 @@
                 e.preventDefault();
                 logout();
             });
-            const jobs = typeof getActiveJobs === 'function' ? getActiveJobs() : [];
-            const emptyState = document.getElementById('dashboard-empty-state');
-            const withJobs = document.getElementById('dashboard-with-jobs');
-            if (jobs.length > 0) {
-                if (emptyState) emptyState.style.display = 'none';
-                if (withJobs) {
-                    withJobs.style.display = 'block';
-                    document.getElementById('stat-active-jobs').textContent = jobs.length;
-                    document.getElementById('stat-candidates').textContent = '0';
-                    document.getElementById('stat-interviews').textContent = '0';
-                    document.getElementById('employer-jobs-list').innerHTML = '<ul>' + jobs.map(j => '<li><a href="../jobs.html">' + escapeHtml(j.title) + ' – ' + escapeHtml(j.location) + '</a></li>').join('') + '</ul>';
+            (async function() {
+                var jobs = typeof getJobs === 'function' ? (await getJobs(session.id)).filter(function(j) { return j.status === 'open'; }) : [];
+                var emptyState = document.getElementById('dashboard-empty-state');
+                var withJobs = document.getElementById('dashboard-with-jobs');
+                if (jobs.length > 0) {
+                    if (emptyState) emptyState.style.display = 'none';
+                    if (withJobs) {
+                        withJobs.style.display = 'block';
+                        document.getElementById('stat-active-jobs').textContent = jobs.length;
+                        document.getElementById('stat-candidates').textContent = '0';
+                        document.getElementById('stat-interviews').textContent = '0';
+                        document.getElementById('employer-jobs-list').innerHTML = '<ul>' + jobs.map(function(j) { return '<li><a href="job-management.html">' + escapeHtml(j.title) + ' – ' + escapeHtml(j.location) + '</a></li>'; }).join('') + '</ul>';
+                    }
+                } else {
+                    if (emptyState) emptyState.style.display = 'block';
+                    if (withJobs) withJobs.style.display = 'none';
                 }
-            } else {
-                if (emptyState) emptyState.style.display = 'block';
-                if (withJobs) withJobs.style.display = 'none';
-            }
+            })();
         }
-        function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
     </script>
 </body>
 </html>

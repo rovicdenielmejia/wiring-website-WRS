@@ -49,3 +49,23 @@ DROP TRIGGER IF EXISTS candidates_updated ON candidates;
 CREATE TRIGGER candidates_updated
   BEFORE UPDATE ON candidates
   FOR EACH ROW EXECUTE PROCEDURE set_updated_at();
+
+-- Jobs (employer postings)
+CREATE TABLE IF NOT EXISTS jobs (
+  id            TEXT PRIMARY KEY,
+  employer_id   TEXT NOT NULL REFERENCES employers(id) ON DELETE CASCADE,
+  title         TEXT NOT NULL,
+  location      TEXT NOT NULL DEFAULT '',
+  description   TEXT DEFAULT '',
+  status        TEXT NOT NULL DEFAULT 'open' CHECK (status IN ('open', 'closed')),
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_jobs_employer_id ON jobs(employer_id);
+CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status);
+
+DROP TRIGGER IF EXISTS jobs_updated ON jobs;
+CREATE TRIGGER jobs_updated
+  BEFORE UPDATE ON jobs
+  FOR EACH ROW EXECUTE PROCEDURE set_updated_at();
