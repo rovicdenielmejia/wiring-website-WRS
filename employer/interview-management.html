@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Schedule interviews, video integration, calendar sync. WRS Employer Portal.">
+    <title>Interview Management | WRS Employer Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles-portal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .portal-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+        .portal-card { background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem; }
+        .portal-card h4 { margin: 0 0 0.5rem; font-size: 1rem; }
+        .portal-card p { margin: 0; font-size: 0.9rem; color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1><a href="employer-dashboard.html" class="nav-brand-link">
+                        <img src="../Assets/WRS LOGO.png" alt="Workforce Recruitment Solutions" class="nav-logo">
+                        <span class="nav-brand-title">WRS Employer Portal</span>
+                    </a></h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="employer-dashboard.html">Dashboard</a></li>
+                    <li><a href="job-management.html">Job Management</a></li>
+                    <li><a href="candidate-management.html">Candidates</a></li>
+                    <li><a href="interview-management.html" class="active">Interviews</a></li>
+                    <li><a href="analytics-reports.html">Analytics</a></li>
+                    <li><a href="../home.html">Home</a></li>
+                    <li><a href="../book-consultation.html">Request Dedicated Recruiter</a></li>
+                    <li><a href="#" id="employer-logout">Logout</a></li>
+                </ul>
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content" class="portal-dashboard">
+        <div class="portal-sidebar">
+            <ul>
+                <li><a href="employer-dashboard.html">📊 Dashboard</a></li>
+                <li><a href="job-management.html">📝 Job Management</a></li>
+                <li><a href="candidate-management.html">👥 Candidate Management</a></li>
+                <li><a href="interview-management.html" class="active">📅 Interview Management</a></li>
+                <li><a href="analytics-reports.html">📈 Analytics & Reports</a></li>
+                <li><a href="../jobs.html">🔍 Browse Jobs (public)</a></li>
+            </ul>
+        </div>
+        <div class="portal-main">
+            <div class="dashboard-header">
+                <h1>Interview Management</h1>
+                <p class="dashboard-welcome">Schedule interviews, video interview integration, and calendar sync.</p>
+            </div>
+
+            <section class="dashboard-section">
+                <div class="dashboard-card">
+                    <h3>Scheduled interviews</h3>
+                    <p>Your upcoming and past interviews will appear here. Schedule from the candidate pipeline or request support to coordinate with WRS.</p>
+                    <p style="margin-top: 1rem; color: var(--text-secondary);"><em>No interviews scheduled yet. Request interview support to get started.</em></p>
+                    <a href="../book-consultation.html" class="cta-button cta-button--outline" style="margin-top: 1rem;">Request Interview Support</a>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Tools & support</h3>
+                    <div class="portal-card-grid">
+                        <div class="portal-card">
+                            <h4>📹 Video interviews</h4>
+                            <p>Video interview integration for remote screening.</p>
+                        </div>
+                        <div class="portal-card">
+                            <h4>📆 Calendar sync</h4>
+                            <p>Sync interview slots with your calendar.</p>
+                        </div>
+                        <div class="portal-card">
+                            <h4>👤 Dedicated support</h4>
+                            <p>WRS can coordinate scheduling and follow-ups.</p>
+                        </div>
+                    </div>
+                    <a href="../book-consultation.html" class="cta-button" style="margin-top: 1rem;">Book Consultation</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+        var session = requireRole(['employer'], 'employer-login.html');
+        if (session) {
+            document.getElementById('employer-logout').addEventListener('click', function(e) {
+                e.preventDefault();
+                logout();
+            });
+        }
+    </script>
+</body>
+</html>
