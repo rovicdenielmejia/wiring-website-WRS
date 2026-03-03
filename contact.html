@@ -38,7 +38,7 @@
                                     <a href="/why-us#recruitment-services">Contract Staffing</a>
                                     <a href="/services/recruitment-process">Workforce Planning</a>
                                     <a href="/why-us#hr-services">HR Consulting</a>
-                                    <a href="solutions/employers.html" class="mega-cta red">Employers Page →</a>
+                                    <a href="/solutions/employers" class="mega-cta red">Employers Page →</a>
                                 </div>
                                 <div class="mega-col">
                                     <h4>👩‍💼 Talent</h4>
@@ -247,7 +247,7 @@
                         statusEl.textContent = 'Thank you. Your message has been sent to wrs.recruitment.hr@gmail.com.';
                         statusEl.className = 'contact-form-status success';
                         form.reset();
-                        window.location.href = 'thank-you.html?type=contact';
+                        window.location.href = '/thank-you?type=contact';
                     } else {
                         return response.json().then(function(data) {
                             throw data;

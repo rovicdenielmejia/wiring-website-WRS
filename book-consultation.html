@@ -169,7 +169,7 @@
             const stored = JSON.parse(localStorage.getItem('wrs_consultations') || '[]');
             stored.push({ ...data, date: new Date().toISOString() });
             localStorage.setItem('wrs_consultations', JSON.stringify(stored));
-            window.location.href = 'thank-you.html?type=consultation';
+            window.location.href = '/thank-you?type=consultation';
         });
     </script>
 </body>

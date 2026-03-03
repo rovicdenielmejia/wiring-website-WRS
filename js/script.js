@@ -426,7 +426,7 @@ function injectConsultationModal() {
                     form.reset();
                     setTimeout(function() {
                         closeConsultationModal();
-                        window.location.href = base + 'thank-you.html?type=consultation';
+                        window.location.href = '/thank-you?type=consultation';
                     }, 800);
                 } else {
                     return response.json().then(function(data) { throw data; });
@@ -576,7 +576,7 @@ function handleFormSubmit(e) {
         body: formData
     })
         .then(() => {
-            window.location.href = `thank-you.html?name=${encodeURIComponent(applicationData.name)}&position=${encodeURIComponent(jobTitle)}`;
+            window.location.href = `/thank-you?name=${encodeURIComponent(applicationData.name)}&position=${encodeURIComponent(jobTitle)}`;
         })
         .catch(error => {
             console.error('Error submitting application:', error);
@@ -894,6 +894,51 @@ function setupConsultationModalCTA() {
     });
 }
 
+// Newsletter banner – lower right corner; never show again after "Count Me In"
+function injectNewsletterOverlay() {
+    if (document.getElementById('newsletter-overlay')) return;
+    if (localStorage.getItem('newsletter-banner-signedup')) return;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'newsletter-overlay';
+    overlay.className = 'newsletter-overlay';
+    overlay.setAttribute('aria-label', 'Newsletter signup');
+    overlay.innerHTML = `
+        <div class="newsletter-overlay__panel" role="dialog" aria-labelledby="newsletter-overlay-title">
+            <button type="button" class="newsletter-overlay__close" aria-label="Close">&times;</button>
+            <h2 id="newsletter-overlay-title" class="newsletter-overlay__title">Easier HR for your inbox</h2>
+            <p class="newsletter-overlay__desc">Get resources, tips, and inspiration that will help you save time and shine at work.</p>
+            <form class="newsletter-overlay__form" action="https://formspree.io/f/mbdavorz" method="post">
+                <input type="hidden" name="_subject" value="Newsletter signup – Overlay">
+                <label for="newsletter-overlay-email" class="visually-hidden">Work Email</label>
+                <input type="email" id="newsletter-overlay-email" name="email" placeholder="Work Email" required class="newsletter-overlay__input" aria-required="true">
+                <p class="newsletter-overlay__disclaimer">By providing my email, I authorize WRS to keep me informed about tips, resources, and updates via email. My data will be handled according to our privacy practices.</p>
+                <button type="submit" class="cta-button newsletter-overlay__submit">Count Me In</button>
+            </form>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    function showBanner() {
+        if (localStorage.getItem('newsletter-banner-signedup')) return;
+        overlay.classList.add('is-visible');
+    }
+    function hideBanner() {
+        overlay.classList.remove('is-visible');
+    }
+    function hideBannerForever() {
+        overlay.classList.remove('is-visible');
+        localStorage.setItem('newsletter-banner-signedup', '1');
+    }
+
+    overlay.querySelector('.newsletter-overlay__close').addEventListener('click', hideBanner);
+    overlay.querySelector('form').addEventListener('submit', function() {
+        hideBannerForever();
+    });
+
+    setTimeout(showBanner, 1800);
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeJobs();
@@ -908,7 +953,8 @@ document.addEventListener('DOMContentLoaded', function() {
     setupNavbarScroll();
     setupSectionReveal();
     setupBlogAnimations();
-    
+    injectNewsletterOverlay();
+
     // Form submission
     const applicationForm = document.getElementById('application-form');
     if (applicationForm) {

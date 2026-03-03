@@ -2,15 +2,15 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    /* Dark theme */
-    --hr-red: #ef4444;
-    --hr-red-dark: #b91c1c;
+    /* Dark theme – no red, no yellow */
+    --hr-red: #3b82f6;
+    --hr-red-dark: #1e3a5f;
     --hr-blue: #3b82f6;
     --hr-blue-dark: #1e3a5f;
     --hr-blue-mid: #60a5fa;
-    --hr-orange: #f97316;
-    --hr-orange-light: #fb923c;
-    --hr-yellow: #fbbf24;
+    --hr-orange: #60a5fa;
+    --hr-orange-light: #93c5fd;
+    --hr-yellow: #e8e8e8;
     --hr-green: #22c55e;
     --hr-white: #ffffff;
     --hr-bg: #1a1a1e;
@@ -700,7 +700,7 @@ a, button { -webkit-tap-highlight-color: rgba(30, 58, 95, 0.12); tap-highlight-c
 @keyframes spin { to { transform: rotate(360deg); } }
 .form-message { margin-top: 1rem; padding: 0.75rem; border-radius: 8px; text-align: center; font-weight: 500; }
 .form-message.success { background: #dcfce7; color: #166534; }
-.form-message.error { background: #fee2e2; color: #991b1b; }
+.form-message.error { background: rgba(30, 115, 216, 0.12); color: var(--hr-blue-mid); border: 1px solid rgba(30, 115, 216, 0.3); }
 .form-trouble {
     margin-top: 1.25rem;
     padding-top: 1rem;
