@@ -2473,14 +2473,14 @@ section.reveal .hero-content {
     margin-bottom: 0.5rem;
 }
 
-/* Footer – Premium, darker navy, gold divider */
+/* Footer – Premium, presentable */
 .footer {
-    background: var(--navy-dark);
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
     color: var(--text-primary);
-    padding: 3.5rem 0;
+    padding: 4rem 0 3rem;
     position: relative;
     overflow: hidden;
-    border-top: 1px solid var(--border-gold);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .footer::before {
@@ -2489,21 +2489,36 @@ section.reveal .hero-content {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent 8%, var(--gold) 50%, transparent 92%);
-    opacity: 0.9;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 5%, rgba(193, 157, 67, 0.6) 20%, #C19D43 50%, rgba(193, 157, 67, 0.6) 80%, transparent 95%);
+    opacity: 1;
 }
 
 .footer .container {
     position: relative;
     z-index: 1;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer-content {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    align-items: center;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* Single-section footer (blog, legal): center and compact */
+.footer-content:has(.footer-section):not(:has(.footer-contact)) {
+    grid-template-columns: 1fr;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.footer-content:has(.footer-section):not(:has(.footer-contact)) .footer-section p {
+    margin: 0.5rem 0;
 }
 
 .footer-section {
@@ -2511,63 +2526,109 @@ section.reveal .hero-content {
 }
 
 .footer-section p {
-    margin: 0.6rem 0;
+    margin: 0.5rem 0;
     opacity: 0.92;
-    font-size: 1.05rem;
-    line-height: 1.6;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
 }
 
 .footer-section p:first-child {
     font-weight: 700;
     font-size: 1.05rem;
     letter-spacing: 0.02em;
+    color: var(--text-primary);
 }
 
-.footer-section p:last-child {
+.footer-section p:nth-child(2) {
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    opacity: 0.9;
+}
+
+.footer-section p:last-child:not(:first-child):not(:nth-child(2)) {
     font-style: italic;
     opacity: 0.85;
 }
 
+/* Legal/quick links in footer */
+.footer-link {
+    color: var(--text-soft);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #C19D43;
+    border-bottom-color: rgba(193, 157, 67, 0.5);
+}
+
+.footer-section p a:not([class]) {
+    color: var(--text-soft);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-section p a:not([class]):hover {
+    color: #C19D43;
+    border-bottom-color: rgba(193, 157, 67, 0.5);
+}
+
 .footer-contact {
     text-align: right;
+    padding-top: 0.15rem;
+}
+
+.footer-contact::before {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #C19D43);
+    margin-left: auto;
+    margin-bottom: 1.25rem;
+    border-radius: 1px;
 }
 
 .contact-title {
-    font-weight: 600;
-    font-size: 1.1rem;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #C19D43;
     margin-bottom: 1rem;
     opacity: 1;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 .contact-item {
-    margin: 0.75rem 0;
+    margin: 0.6rem 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 0.75rem;
-    font-size: 1rem;
+    gap: 0.65rem;
+    font-size: 0.95rem;
     opacity: 0.95;
+    color: var(--text-secondary);
 }
 
 .contact-icon {
-    font-size: 1.2rem;
-    opacity: 1;
+    font-size: 1rem;
+    opacity: 0.9;
+    flex-shrink: 0;
 }
 
 .footer-contact a {
-    color: var(--white);
+    color: var(--text-primary);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: color 0.2s ease, border-color 0.2s ease;
     border-bottom: 1px solid transparent;
 }
 
 .footer-contact a:hover {
-    opacity: 0.9;
-    border-bottom-color: var(--color-accent);
-    color: var(--color-accent);
-    transform: translateX(-3px);
+    color: #C19D43;
+    border-bottom-color: rgba(193, 157, 67, 0.4);
 }
 
 /* Apply section: stack layout on smaller screens */
@@ -2904,7 +2965,7 @@ section.reveal .hero-content {
 
     .footer-content {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 2.5rem;
         text-align: center;
     }
 
@@ -2916,12 +2977,17 @@ section.reveal .hero-content {
         text-align: center;
     }
 
+    .footer-contact::before {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .contact-item {
         justify-content: center;
     }
 
     .footer-section p {
-        font-size: 1rem;
+        font-size: 0.98rem;
     }
 }
 
@@ -3062,6 +3128,11 @@ section.reveal .hero-content {
 
     .footer-contact {
         text-align: center;
+    }
+
+    .footer-contact::before {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .contact-title {
