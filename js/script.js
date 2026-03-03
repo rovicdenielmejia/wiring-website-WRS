@@ -722,7 +722,15 @@ function setupMobileNav() {
         link.addEventListener('click', function(e) {
             if (window.innerWidth < 900) {
                 e.preventDefault();
-                this.parentElement.classList.toggle('open');
+                const wrapper = this.parentElement;
+                wrapper.classList.toggle('open');
+                // Scroll expanded dropdown into view so all links are visible
+                if (wrapper.classList.contains('open')) {
+                    requestAnimationFrame(() => {
+                        const menu = wrapper.querySelector('.mega-menu');
+                        if (menu) menu.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                    });
+                }
             }
         });
     });
