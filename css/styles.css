@@ -2428,9 +2428,13 @@ section.reveal .hero-content {
 
 /* Responsive Design – Mobile First */
 @media (max-width: 768px) {
+    :root {
+        --navbar-height: 72px;
+    }
+    /* Nav menu and Solutions/About dropdowns: below header (Logo, Burger) on mobile only */
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: var(--navbar-height, 72px);
         left: -100%;
         flex-direction: column;
         background-color: var(--bg-elevated);
@@ -2441,14 +2445,15 @@ section.reveal .hero-content {
         box-shadow: 0 4px 15px var(--shadow);
         padding: 1rem 0;
         gap: 0;
-        max-height: calc(100vh - 70px);
+        max-height: calc(100vh - var(--navbar-height, 72px));
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        z-index: 999;
     }
 
     /* Ensure content does not sit under fixed navbar on small screens */
     main {
-        padding-top: 70px;
+        padding-top: var(--navbar-height, 72px);
     }
 
     .nav-menu a {
