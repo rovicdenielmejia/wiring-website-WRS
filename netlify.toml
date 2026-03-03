@@ -1,51 +1,323 @@
 # Netlify Configuration - workforcerecruitmentsolutions.com
-# Workforce Recruitment Solutions
+# Clean URLs: serve without .html; redirect .html to clean
 
 [build]
   publish = "."
   command = ""
 
-# Redirects for clean URLs and custom domain
-# Site root and legacy URLs → home page
+# Rewrites: clean URL → serve .html (user sees /about, not /about.html)
 [[redirects]]
   from = "/"
   to = "/home.html"
-  status = 301
+  status = 200
   force = true
-
 [[redirects]]
-  from = "/index.html"
+  from = "/home"
   to = "/home.html"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/WorkforceRecruitmentSolution.html"
-  to = "/home.html"
-  status = 301
-  force = true
-
-# Optional: clean URLs for portfolio pages (e.g. /about → /about.html)
-[[redirects]]
-  from = "/why-us"
-  to = "/why-us.html"
-  status = 301
-[[redirects]]
-  from = "/services"
-  to = "/services.html"
-  status = 301
-[[redirects]]
-  from = "/hr-services"
-  to = "/hr-services.html"
-  status = 301
+  status = 200
 [[redirects]]
   from = "/about"
   to = "/about.html"
-  status = 301
+  status = 200
+[[redirects]]
+  from = "/why-us"
+  to = "/why-us.html"
+  status = 200
 [[redirects]]
   from = "/jobs"
   to = "/jobs.html"
+  status = 200
+[[redirects]]
+  from = "/blogs"
+  to = "/blogs.html"
+  status = 200
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 200
+[[redirects]]
+  from = "/book-consultation"
+  to = "/book-consultation.html"
+  status = 200
+[[redirects]]
+  from = "/thank-you"
+  to = "/thank-you.html"
+  status = 200
+[[redirects]]
+  from = "/pricing"
+  to = "/pricing.html"
+  status = 200
+[[redirects]]
+  from = "/solutions"
+  to = "/solutions/solutions.html"
+  status = 200
+[[redirects]]
+  from = "/solutions/employers"
+  to = "/solutions/employers.html"
+  status = 200
+[[redirects]]
+  from = "/solutions/job-seekers"
+  to = "/solutions/job-seekers.html"
+  status = 200
+[[redirects]]
+  from = "/services/recruitment-process"
+  to = "/services/recruitment-process.html"
+  status = 200
+[[redirects]]
+  from = "/services/hr-services"
+  to = "/services/hr-services.html"
+  status = 200
+[[redirects]]
+  from = "/services/services"
+  to = "/services/services.html"
+  status = 200
+[[redirects]]
+  from = "/legal/privacy"
+  to = "/legal/privacy.html"
+  status = 200
+[[redirects]]
+  from = "/legal/terms"
+  to = "/legal/terms.html"
+  status = 200
+[[redirects]]
+  from = "/platform/ai-platform"
+  to = "/platform/ai-platform.html"
+  status = 200
+[[redirects]]
+  from = "/hr"
+  to = "/WorkforceRecruitmentSolution-hr.html"
+  status = 200
+
+# Blog posts
+[[redirects]]
+  from = "/blog/hire-smarter-2026"
+  to = "/blog/hire-smarter-2026.html"
+  status = 200
+[[redirects]]
+  from = "/blog/pre-screening-saves-time"
+  to = "/blog/pre-screening-saves-time.html"
+  status = 200
+[[redirects]]
+  from = "/blog/hire-right-first-time"
+  to = "/blog/hire-right-first-time.html"
+  status = 200
+[[redirects]]
+  from = "/blog/resume-tips-job-seekers"
+  to = "/blog/resume-tips-job-seekers.html"
+  status = 200
+[[redirects]]
+  from = "/blog/hr-compliance-basics"
+  to = "/blog/hr-compliance-basics.html"
+  status = 200
+[[redirects]]
+  from = "/blog/job-interview-confidence"
+  to = "/blog/job-interview-confidence.html"
+  status = 200
+[[redirects]]
+  from = "/blog/career-growth-young-professionals"
+  to = "/blog/career-growth-young-professionals.html"
+  status = 200
+[[redirects]]
+  from = "/blog/hr-compliance-basics-sme"
+  to = "/blog/hr-compliance-basics-sme.html"
+  status = 200
+[[redirects]]
+  from = "/blog/basic-hr-systems-sme"
+  to = "/blog/basic-hr-systems-sme.html"
+  status = 200
+[[redirects]]
+  from = "/blog/remote-work-philippines"
+  to = "/blog/remote-work-philippines.html"
+  status = 200
+[[redirects]]
+  from = "/blog/employee-retention-advantage"
+  to = "/blog/employee-retention-advantage.html"
+  status = 200
+[[redirects]]
+  from = "/blog/employer-branding-smes"
+  to = "/blog/employer-branding-smes.html"
+  status = 200
+[[redirects]]
+  from = "/blog/employer-branding-salary-alt"
+  to = "/blog/employer-branding-salary-alt.html"
+  status = 200
+
+# Redirect .html URLs to clean URLs (301)
+[[redirects]]
+  from = "/index.html"
+  to = "/"
   status = 301
+  force = true
+[[redirects]]
+  from = "/home.html"
+  to = "/home"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/about.html"
+  to = "/about"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/why-us.html"
+  to = "/why-us"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/jobs.html"
+  to = "/jobs"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blogs.html"
+  to = "/blogs"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/faq.html"
+  to = "/faq"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/book-consultation.html"
+  to = "/book-consultation"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/thank-you.html"
+  to = "/thank-you"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/pricing.html"
+  to = "/pricing"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/WorkforceRecruitmentSolution.html"
+  to = "/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/solutions/solutions.html"
+  to = "/solutions"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/solutions/employers.html"
+  to = "/solutions/employers"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/solutions/job-seekers.html"
+  to = "/solutions/job-seekers"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/services/recruitment-process.html"
+  to = "/services/recruitment-process"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/services/hr-services.html"
+  to = "/services/hr-services"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/services/services.html"
+  to = "/services/services"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/legal/privacy.html"
+  to = "/legal/privacy"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/legal/terms.html"
+  to = "/legal/terms"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/hire-smarter-2026.html"
+  to = "/blog/hire-smarter-2026"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/pre-screening-saves-time.html"
+  to = "/blog/pre-screening-saves-time"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/hire-right-first-time.html"
+  to = "/blog/hire-right-first-time"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/resume-tips-job-seekers.html"
+  to = "/blog/resume-tips-job-seekers"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/hr-compliance-basics.html"
+  to = "/blog/hr-compliance-basics"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/job-interview-confidence.html"
+  to = "/blog/job-interview-confidence"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/career-growth-young-professionals.html"
+  to = "/blog/career-growth-young-professionals"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/hr-compliance-basics-sme.html"
+  to = "/blog/hr-compliance-basics-sme"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/basic-hr-systems-sme.html"
+  to = "/blog/basic-hr-systems-sme"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/remote-work-philippines.html"
+  to = "/blog/remote-work-philippines"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/employee-retention-advantage.html"
+  to = "/blog/employee-retention-advantage"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/employer-branding-smes.html"
+  to = "/blog/employer-branding-smes"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/employer-branding-salary-alt.html"
+  to = "/blog/employer-branding-salary-alt"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/WorkforceRecruitmentSolution-hr.html"
+  to = "/hr"
+  status = 301
+  force = true
+
 # Headers for security and performance
 [[headers]]
   for = "/*"
@@ -76,9 +348,9 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Form handling
+# Form success redirect (clean URL)
 [forms]
-  action = "/thank-you.html"
+  action = "/thank-you"
 
 [context.production.environment]
   SITE_URL = "https://workforcerecruitmentsolutions.com"
